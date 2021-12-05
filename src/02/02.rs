@@ -27,22 +27,26 @@ fn main() -> Result<(), Error> {
         "/home/alex/Documents/aoc/01/aoc01/src/02/input.txt",
     )?)?;
     let mut hor: u32 = 0;
-    let mut ver: u32 = 0;
+    let mut depth: u32 = 0;
+    let mut aim: u32 = 0;
     for line in lines.iter() {
         let dir = line.chars().nth(0).unwrap();
         let value = line.chars().last().unwrap();
         let value: u32 = value.to_digit(10).unwrap();
         match dir {
             'd' => {
-                hor = hor + value;
+                aim = aim + value;
             }
             'u' => {
-                hor = hor - value;
+                aim = aim - value;
             }
-            _ => ver = ver + value,
+            _ => {
+                hor = hor + value;
+                depth = depth + value * aim;
+            }
         }
     }
-    println!("{},{}", hor, ver);
-    println!("{}", hor * ver);
+    println!("{},{}", hor, depth);
+    println!("{}", hor * depth);
     Ok(())
 }
