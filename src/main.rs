@@ -27,15 +27,25 @@ fn main() -> Result<(), Error> {
         "/home/alex/Documents/aoc/01/aoc01/src/input.txt",
     )?)?;
     let mut i: i32 = 0;
+    let mut x: i64 = 0;
+    let mut y: i64 = 0;
+    let mut window: i32 = 0;
     for (pos, e) in vec.iter().enumerate() {
-        if vec.get(pos + 1) > Some(e){
-          i = i + 1;
-          // println!("{}: {:?}, increased", pos, e);
-        } else {
-          // println!("{}: {:?}, decreased", pos, e);
+        if vec.get(pos + 1) > Some(e) {
+            i = i + 1;
+        }
+        //#### part 2
+        x = vec.get(pos).unwrap_or(&0)
+            + vec.get(pos + 1).unwrap_or(&0)
+            + vec.get(pos + 2).unwrap_or(&0);
+        y = vec.get(pos + 1).unwrap_or(&0)
+            + vec.get(pos + 2).unwrap_or(&0)
+            + vec.get(pos + 3).unwrap_or(&0);
+        if y > x {
+            window = window + 1;
         }
     }
-
-    println!("{}", i);
+    println!("{} Answer part 1", i);
+    println!("{} Answer part 2", window);
     Ok(())
 }
