@@ -10,4 +10,4 @@ itertools = "0.10.1"
 
 [[bin]]
 name = "test"
-path = "src/03/03.rs"
+path = "src/04/04.rs"
